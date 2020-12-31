@@ -1,0 +1,30 @@
+{
+  "name": "loopringing",
+  "version": "0.0.1",
+  "description": "ETH L2 Loopring tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodyce/loopringing.git"
+  },
+  "keywords": [
+    "loopring",
+    "eth",
+    "l2"
+  ],
+  "author": "Rodimiro Cerrato E",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rodyce/loopringing/issues"
+  },
+  "homepage": "https://github.com/rodyce/loopringing#readme",
+  "dependencies": {
+    "@types/node": "^14.14.13",
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "ethers": "^5.0.24"
+  }
+}
