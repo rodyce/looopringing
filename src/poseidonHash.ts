@@ -1,12 +1,3 @@
-// import hashlib
-// import sys
-
-// from ethsnarks.eddsa import PureEdDSA, PoseidonEdDSA
-// from ethsnarks.field import FQ, SNARK_SCALAR_FIELD
-// from ethsnarks.poseidon import poseidon_params, poseidon
-// import argparse
-
-// const EdDSA = require('./lib/sign/eddsa');
 import { EdDSA } from './lib/sign/eddsa';
 const poseidon = require('./lib/sign/poseidon');
 
@@ -41,7 +32,8 @@ function assert(condition: boolean, message?: string) {
 
 function loopringPoseidonHash(inputs: number[]) {
     console.log(`Poseidon hash ${inputs}`);
-    const hasher = poseidon.createHash(MAX_INPUT + 1, 6, 53);
+    // Create a hasher with the number of inputs plus one.
+    const hasher = poseidon.createHash(inputs.length + 1, 6, 53);
     const hashValue = hasher(inputs);
     return hashValue;
 }
