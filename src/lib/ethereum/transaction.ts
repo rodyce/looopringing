@@ -1,5 +1,5 @@
 import EthTransaction from "ethereumjs-tx";
-// import validator from "./validator";
+import validator from "./validator";
 import { addHexPrefix, toBuffer, toHex } from "../common/formatter";
 import { getGasPrice, getTransactionCount } from "./utils";
 import request from "../common/request";
@@ -13,7 +13,7 @@ export default class Transaction {
   signed: string;
 
   constructor(rawTx) {
-    // validator.validate({ value: rawTx, type: "BASIC_TX" });
+    validator.validate({ value: rawTx, type: "BASIC_TX" });
     this.raw = rawTx;
   }
 
@@ -37,13 +37,13 @@ export default class Transaction {
   }
 
   hash() {
-    // validator.validate({ value: this.raw, type: "TX" });
+    validator.validate({ value: this.raw, type: "TX" });
     return new EthTransaction(this.raw).hash();
   }
 
   async sign({ privateKey, walletType, path }) {
     try {
-      // validator.validate({ value: this.raw, type: "TX" });
+      validator.validate({ value: this.raw, type: "TX" });
     } catch (e) {
       await this.complete();
     }
@@ -53,10 +53,10 @@ export default class Transaction {
     if (privateKey) {
       try {
         if (typeof privateKey === "string") {
-          // validator.validate({ value: privateKey, type: "PRIVATE_KEY" });
+          validator.validate({ value: privateKey, type: "PRIVATE_KEY" });
           privateKey = toBuffer(addHexPrefix(privateKey));
         } else {
-          // validator.validate({ value: privateKey, type: "PRIVATE_KEY_BUFFER" });
+          validator.validate({ value: privateKey, type: "PRIVATE_KEY_BUFFER" });
         }
       } catch (e) {
         throw new Error("Invalid private key");

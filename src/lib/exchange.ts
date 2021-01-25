@@ -3,7 +3,7 @@ import { ethereum } from "../lib/wallet";
 import * as fm from "../lib/common/formatter";
 import config from "../lib/config";
 import Transaction from "../lib/ethereum/transaction";
-import { WalletAccount } from "../lib/walletAccount";
+import { WalletAccount } from "./ethereum/walletAccount";
 import {
   CancelRequest,
   FlexCancelRequest,

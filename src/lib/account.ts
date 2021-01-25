@@ -3,7 +3,7 @@ import * as fm from "./common/formatter";
 import config from "./config";
 import Contracts from "./ethereum/contracts/Contracts";
 import Transaction from "./ethereum/transaction";
-import { WalletAccount } from "./walletAccount";
+import { WalletAccount } from "./ethereum/walletAccount";
 import {
   CancelRequest,
   DexAccount,

@@ -1,6 +1,6 @@
 // @ts-ignore
 /* ts-disable */
-// import validator from "./validator";
+import validator from "./validator";
 import {
   addHexPrefix,
   formatAddress,
@@ -8,7 +8,7 @@ import {
   toBuffer,
   toHex,
   toNumber
-} from "./common/formatter";
+} from "../common/formatter";
 import {
   ecsign,
   hashPersonalMessage,
@@ -17,12 +17,13 @@ import {
   publicToAddress,
   sha256
 } from "ethereumjs-util";
-import { mnemonictoPrivatekey } from "./ethereum/mnemonic";
+import { mnemonictoPrivatekey } from "./mnemonic";
 import { generateMnemonic } from "bip39";
-import { trimAll } from "./common/utils";
+import HDKey from "hdkey";
+import { trimAll } from "../common/utils";
 import EthTransaction from "ethereumjs-tx";
 
-import wallets from "./config/wallets.json";
+import wallets from "../config/wallets.json";
 const LoopringWallet = wallets.find(
   wallet => trimAll(wallet.name).toLowerCase() === "loopringwallet"
 );
@@ -36,10 +37,10 @@ export const path = LoopringWallet.dpath;
 export function privateKeytoAddress(privateKey) {
   try {
     if (typeof privateKey === "string") {
-      // validator.validate({ value: privateKey, type: "ETH_KEY" });
+      validator.validate({ value: privateKey, type: "ETH_KEY" });
       privateKey = toBuffer(addHexPrefix(privateKey));
     } else {
-      // validator.validate({ value: privateKey, type: "PRIVATE_KEY_BUFFER" });
+      validator.validate({ value: privateKey, type: "PRIVATE_KEY_BUFFER" });
     }
   } catch (e) {
     throw new Error("Invalid private key");
@@ -89,10 +90,10 @@ export function getAddresses({ publicKey, chainCode, pageSize, pageNum }) {
 export function privateKeytoPublic(privateKey) {
   try {
     if (typeof privateKey === "string") {
-      // validator.validate({ value: privateKey, type: "ETH_KEY" });
+      validator.validate({ value: privateKey, type: "ETH_KEY" });
       privateKey = toBuffer(addHexPrefix(privateKey));
     } else {
-      // validator.validate({ value: privateKey, type: "PRIVATE_KEY_BUFFER" });
+      validator.validate({ value: privateKey, type: "PRIVATE_KEY_BUFFER" });
     }
   } catch (e) {
     throw new Error("Invalid private key");
@@ -188,12 +189,13 @@ export class PrivateKeyAccount extends WalletAccount {
     super();
     try {
       if (typeof privateKey === "string") {
-        // validator.validate({ value: privateKey, type: "ETH_KEY" });
+        validator.validate({ value: privateKey, type: "ETH_KEY" });
         privateKey = toBuffer(addHexPrefix(privateKey));
       } else {
-        // validator.validate({ value: privateKey, type: "PRIVATE_KEY_BUFFER" });
+        validator.validate({ value: privateKey, type: "PRIVATE_KEY_BUFFER" });
       }
     } catch (e) {
+      console.log(e);
       throw new Error("Invalid private key");
     }
     this.privateKey = privateKey;
@@ -227,7 +229,7 @@ export class PrivateKeyAccount extends WalletAccount {
   }
 
   signEthereumTx(rawTx) {
-    // validator.validate({ type: "TX", value: rawTx });
+    validator.validate({ type: "TX", value: rawTx });
     const ethTx = new EthTransaction(rawTx);
     ethTx.sign(this.privateKey);
     return toHex(ethTx.serialize());
