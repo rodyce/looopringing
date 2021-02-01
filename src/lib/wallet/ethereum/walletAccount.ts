@@ -36,6 +36,7 @@ export const path = LoopringWallet.dpath;
  */
 export function privateKeytoAddress(privateKey) {
   try {
+    console.log(privateKey);
     if (typeof privateKey === "string") {
       validator.validate({ value: privateKey, type: "ETH_KEY" });
       privateKey = toBuffer(addHexPrefix(privateKey));
@@ -43,9 +44,11 @@ export function privateKeytoAddress(privateKey) {
       validator.validate({ value: privateKey, type: "PRIVATE_KEY_BUFFER" });
     }
   } catch (e) {
-    throw new Error("Invalid private key");
+    // throw new Error("Invalid private key");
   }
-  return formatAddress(privateToAddress(privateKey));
+  const address = formatAddress(privateToAddress(privateKey));
+  console.log(address);
+  return address;
 }
 
 /**

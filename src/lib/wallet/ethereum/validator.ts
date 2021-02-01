@@ -46,7 +46,7 @@ let validate = payload => {
 
   // TODO: if schema empty
   let validator = new Schema(schema);
-  validator.validate(source, null, (errors, fields) => {
+  validator.validate(source, {}, (errors, fields) => {
     if (errors) {
       console.log("validate start source", source);
       console.log("validate start schema", schema);

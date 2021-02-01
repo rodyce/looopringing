@@ -1,9 +1,9 @@
 import { EdDSA } from "../lib/sign/eddsa";
 import { ethereum } from "../lib/wallet";
-import * as fm from "../lib/common/formatter";
-import config from "../lib/config";
-import Transaction from "../lib/ethereum/transaction";
-import { WalletAccount } from "./ethereum/walletAccount";
+import * as fm from "../lib/wallet/common/formatter";
+import config from "../lib/wallet/config";
+import Transaction from "../lib/wallet/ethereum/transaction";
+import { WalletAccount } from "../lib/wallet/ethereum/walletAccount";
 import {
   CancelRequest,
   FlexCancelRequest,

@@ -1,9 +1,9 @@
-import { exchange } from "./exchange";
-import * as fm from "./common/formatter";
-import config from "./config";
-import Contracts from "./ethereum/contracts/Contracts";
-import Transaction from "./ethereum/transaction";
-import { WalletAccount } from "./ethereum/walletAccount";
+import { exchange } from "../sign/exchange";
+import * as fm from "./wallet/common/formatter";
+import config from "./wallet/config";
+import Contracts from "./wallet/ethereum/contracts/Contracts";
+import Transaction from "./wallet/ethereum/transaction";
+import { WalletAccount } from "./wallet/ethereum/walletAccount";
 import {
   CancelRequest,
   DexAccount,
